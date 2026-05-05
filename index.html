@@ -14,13 +14,13 @@
     --mid: #2a2a2a;
     --white: #f5f5f0;
     --off-white: #c8c8c0;
-    --accent: #00e5ff;
-    --accent-dim: rgba(0,229,255,0.15);
-    --accent-glow: 0 0 40px rgba(0,229,255,0.3);
+    --accent: #CCFF00;
+    --accent-rgb: 204,255,0;
+    --accent-dim: rgba(204,255,0,0.12);
+    --accent-glow: 0 0 40px rgba(204,255,0,0.35);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -32,571 +32,352 @@
     cursor: none;
   }
 
-  /* CUSTOM CURSOR */
+  /* CURSOR */
   .cursor {
-    position: fixed;
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
+    position: fixed; width: 10px; height: 10px;
+    background: var(--accent); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
     transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s;
+    transition: width 0.2s, height 0.2s;
     mix-blend-mode: screen;
   }
   .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(0,229,255,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
+    position: fixed; width: 36px; height: 36px;
+    border: 1px solid rgba(204,255,0,0.5); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
     transform: translate(-50%,-50%);
-    transition: transform 0.18s ease, width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
   }
   .cursor.hover { width: 20px; height: 20px; }
   .cursor-ring.hover { width: 60px; height: 60px; border-color: var(--accent); }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 48px;
     background: linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, transparent 100%);
     backdrop-filter: blur(2px);
+    transition: background 0.3s, backdrop-filter 0.3s;
   }
-  .nav-logo img { height: 32px; filter: brightness(1); }
+  .nav-logo img { height: 32px; }
   .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--off-white); text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
   .nav-cta {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--accent);
-    border: none;
-    padding: 10px 22px;
-    cursor: none;
-    transition: box-shadow 0.3s, transform 0.2s;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--black); background: var(--accent);
+    border: none; padding: 10px 22px; cursor: none;
+    transition: box-shadow 0.3s, transform 0.2s; text-decoration: none; display: inline-block;
   }
   .nav-cta:hover { box-shadow: var(--accent-glow); transform: translateY(-1px); }
 
   /* HERO */
   #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 140px 48px 80px;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 140px 48px 80px; position: relative; overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,229,255,0.04) 0%, transparent 70%),
-      linear-gradient(135deg, #080808 0%, #0f1416 50%, #080808 100%);
+    background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(204,255,0,0.04) 0%, transparent 70%),
+      linear-gradient(135deg, #080808 0%, #0e110a 50%, #080808 100%);
   }
   .hero-grid {
     position: absolute; inset: 0;
-    background-image: 
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
     background-size: 80px 80px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
   }
   .hero-content { position: relative; z-index: 2; max-width: 900px; }
   .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 28px;
     display: flex; align-items: center; gap: 16px;
   }
-  .hero-eyebrow::before {
-    content: '';
-    display: block; width: 40px; height: 1px;
-    background: var(--accent);
-  }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
   h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(72px, 10vw, 140px);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin-bottom: 32px;
+    line-height: 0.95; letter-spacing: -0.01em;
+    color: var(--white); margin-bottom: 32px;
   }
   h1 .accent { color: var(--accent); }
   .hero-sub {
-    font-size: 18px;
-    color: var(--off-white);
-    line-height: 1.6;
-    max-width: 520px;
-    margin-bottom: 52px;
-    font-weight: 300;
+    font-size: 18px; color: var(--off-white); line-height: 1.6;
+    max-width: 520px; margin-bottom: 52px; font-weight: 300;
   }
   .btn-primary {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--accent);
-    padding: 18px 44px;
-    text-decoration: none;
-    transition: box-shadow 0.3s, transform 0.2s;
-    cursor: none;
+    display: inline-block; font-family: 'Space Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--black); background: var(--accent);
+    padding: 18px 44px; text-decoration: none;
+    transition: box-shadow 0.3s, transform 0.2s; cursor: none;
   }
   .btn-primary:hover { box-shadow: var(--accent-glow); transform: translateY(-2px); }
   .btn-secondary {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--white);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 18px 44px;
-    text-decoration: none;
-    margin-left: 16px;
-    transition: border-color 0.3s, color 0.3s;
-    cursor: none;
+    display: inline-block; font-family: 'Space Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white); border: 1px solid rgba(255,255,255,0.2);
+    padding: 18px 44px; text-decoration: none; margin-left: 16px;
+    transition: border-color 0.3s, color 0.3s; cursor: none;
   }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-stat-row {
-    position: absolute; bottom: 60px; right: 48px;
-    display: flex; gap: 60px;
-  }
+  .hero-stat-row { position: absolute; bottom: 60px; right: 48px; display: flex; gap: 60px; }
   .hero-stat { text-align: right; }
-  .hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    line-height: 1;
-    color: var(--white);
-  }
+  .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--white); }
   .hero-stat-num span { color: var(--accent); }
   .hero-stat-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    margin-top: 6px;
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--off-white); margin-top: 6px;
   }
 
   /* SECTION COMMON */
   section { padding: 120px 48px; }
   .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
     display: flex; align-items: center; gap: 14px;
   }
-  .section-label::before {
-    content: ''; display: block;
-    width: 28px; height: 1px;
-    background: var(--accent);
-  }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
   h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(48px, 6vw, 88px);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    margin-bottom: 24px;
+    line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 24px;
   }
 
   /* SERVICES */
   #services { background: var(--charcoal); }
   .services-header { max-width: 560px; margin-bottom: 80px; }
   .services-header p { font-size: 17px; color: var(--off-white); line-height: 1.65; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .service-card {
-    background: var(--dark);
-    padding: 52px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: none;
+    background: var(--dark); position: relative; overflow: hidden;
+    transition: background 0.3s; cursor: none; display: flex; flex-direction: column;
   }
   .service-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease; z-index: 2;
   }
   .service-card:hover::after { transform: scaleX(1); }
-  .service-card:hover { background: #1e2020; }
+  .service-card:hover { background: #181c0e; }
+  .service-card-top { padding: 52px 40px 32px; flex: 1; }
   .service-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 32px;
-    opacity: 0.7;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; color: var(--accent); margin-bottom: 32px; opacity: 0.7;
   }
-  .service-icon {
-    font-size: 32px;
-    margin-bottom: 24px;
-    display: block;
-  }
+  .service-icon { font-size: 32px; margin-bottom: 24px; display: block; }
   .service-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.1;
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+    letter-spacing: 0.02em; color: var(--white); margin-bottom: 16px; line-height: 1.1;
   }
-  .service-card p {
-    font-size: 15px;
-    color: var(--off-white);
-    line-height: 1.7;
-    margin-bottom: 28px;
-  }
-  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .service-card p { font-size: 15px; color: var(--off-white); line-height: 1.7; margin-bottom: 28px; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
   .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.25);
-    padding: 5px 12px;
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(204,255,0,0.25); padding: 5px 12px;
   }
+
+  /* Service video — autoplay muted bg */
+  .service-video {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    background: #000; border-top: 1px solid var(--mid); flex-shrink: 0; overflow: hidden;
+  }
+  /* iframe is scaled up & centered to hide black bars, pointer-events off so card hover still works */
+  .service-video iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 110%; height: 110%;
+    transform: translate(-50%, -50%);
+    border: none; pointer-events: none;
+  }
+  /* Dark overlay so video doesn't overpower the card */
+  .service-video::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(8,8,8,0.38);
+    pointer-events: none; z-index: 1;
+  }
+  /* Placeholder for card 02 (no video yet) */
+  .service-video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; background: #0d0d0d; cursor: none;
+  }
+  .play-btn {
+    width: 56px; height: 56px;
+    border: 1.5px solid rgba(204,255,0,0.35); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-btn svg { fill: rgba(204,255,0,0.35); width: 18px; height: 18px; margin-left: 3px; }
+  .video-label-small {
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(204,255,0,0.25);
+  }
+  .svc-video-inner { position: relative; }
 
   /* WORK GALLERY */
   #work { background: var(--black); }
-  .work-header {
-    display: flex; align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 60px;
-  }
+  .work-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
   .work-header a {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: opacity 0.2s;
   }
   .work-header a:hover { opacity: 0.7; }
-
-  .masonry {
-    columns: 3;
-    column-gap: 3px;
-  }
+  .masonry { columns: 3; column-gap: 3px; }
   .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 3px;
-    position: relative;
-    overflow: hidden;
-    cursor: none;
-    background: var(--dark);
+    break-inside: avoid; margin-bottom: 3px;
+    position: relative; overflow: hidden; cursor: none; background: var(--dark);
   }
-  .masonry-item .placeholder {
-    width: 100%;
-    display: block;
-    background: var(--mid);
-    transition: transform 0.5s ease;
-  }
+  .masonry-item .placeholder { width: 100%; display: block; background: var(--mid); }
   .masonry-item:nth-child(3n+1) .placeholder { padding-bottom: 130%; }
   .masonry-item:nth-child(3n+2) .placeholder { padding-bottom: 75%; }
   .masonry-item:nth-child(3n+3) .placeholder { padding-bottom: 100%; }
-
   .masonry-item .inner-label {
     position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    background: var(--mid);
-    padding: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--mid); padding: 20px; transition: transform 0.5s ease;
   }
   .masonry-item .inner-label .brand-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.2);
-    text-align: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.2); text-align: center;
   }
   .masonry-item .inner-label .upload-hint {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.1);
-    margin-top: 8px;
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.1); margin-top: 8px;
   }
-
   .masonry-item .overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px 24px;
+    opacity: 0; transition: opacity 0.35s ease;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 24px;
   }
   .masonry-item:hover .overlay { opacity: 1; }
-  .masonry-item:hover .placeholder,
   .masonry-item:hover .inner-label { transform: scale(1.04); }
-  .overlay-client {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-  }
-  .overlay-metric {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-  .overlay-type {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    opacity: 0.7;
-    margin-top: 4px;
-  }
+  .overlay-client { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--white); letter-spacing: 0.05em; margin-bottom: 6px; }
+  .overlay-metric { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
+  .overlay-type { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--off-white); opacity: 0.7; margin-top: 4px; }
 
-  /* VIDEO ROW */
-  #video-reel {
-    padding: 0 48px 120px;
-    background: var(--black);
-  }
-  .video-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
+  /* VIDEO REEL */
+  #video-reel { padding: 0 48px 120px; background: var(--black); }
+  .video-section-label {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
     display: flex; align-items: center; gap: 14px;
   }
-  .video-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .video-section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
   .video-embed-wrap {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    background: var(--dark);
-    border: 1px solid var(--mid);
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    background: var(--dark); border: 1px solid var(--mid);
   }
-  .video-embed-wrap iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
+  .video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-  /* CLIENTS TICKER */
+  /* CLIENT LOGOS */
   #clients {
-    padding: 60px 0;
+    padding: 80px 0;
     background: var(--charcoal);
     overflow: hidden;
     border-top: 1px solid var(--mid);
     border-bottom: 1px solid var(--mid);
   }
-  .ticker-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    opacity: 0.4;
-    text-align: center;
-    margin-bottom: 32px;
+  .clients-label {
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--off-white); opacity: 0.35;
+    text-align: center; margin-bottom: 52px;
   }
+  .ticker-outer { overflow: hidden; }
   .ticker-track {
-    display: flex;
-    gap: 80px;
-    animation: ticker 28s linear infinite;
+    display: flex; gap: 0; align-items: center;
+    animation: ticker 36s linear infinite;
     white-space: nowrap;
   }
   .ticker-track:hover { animation-play-state: paused; }
-  .ticker-item {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.25);
-    flex-shrink: 0;
-    transition: color 0.3s;
-    cursor: none;
-  }
-  .ticker-item:hover { color: var(--white); }
-  .ticker-dot {
-    color: var(--accent);
-    opacity: 0.5;
-    margin-left: 80px;
-  }
   @keyframes ticker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
+  .ticker-logo {
+    flex-shrink: 0; padding: 0 56px;
+    opacity: 0.25; transition: opacity 0.3s; cursor: default;
+    display: inline-flex; align-items: center; justify-content: center;
+    filter: brightness(0) invert(1);
+  }
+  .ticker-logo:hover { opacity: 0.65; }
 
-  /* ENGAGEMENT / CONTACT */
-  #contact {
-    background: var(--charcoal);
-    padding: 140px 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(0,229,255,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
-    position: relative;
-  }
-  .contact-left {}
-  .contact-left p {
-    font-size: 17px;
-    color: var(--off-white);
-    line-height: 1.7;
-    margin-bottom: 40px;
-  }
+  /* CONTACT */
+  #contact { background: var(--charcoal); padding: 140px 48px; position: relative; overflow: hidden; }
+  .contact-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(204,255,0,0.04) 0%, transparent 70%); pointer-events: none; }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; position: relative; }
+  .contact-left p { font-size: 17px; color: var(--off-white); line-height: 1.7; margin-bottom: 40px; }
   .contact-links { display: flex; flex-direction: column; gap: 16px; }
   .contact-link {
     display: flex; align-items: center; gap: 14px;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--off-white); text-decoration: none; transition: color 0.2s;
   }
   .contact-link:hover { color: var(--accent); }
-  .contact-link::before {
-    content: '→';
-    color: var(--accent);
-    font-size: 14px;
-  }
-
+  .contact-link::before { content: '→'; color: var(--accent); font-size: 14px; }
   .contact-form { display: flex; flex-direction: column; gap: 3px; }
-  .form-field { position: relative; }
   .form-field label {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    opacity: 0.6;
-    display: block;
-    margin-bottom: 8px;
-    margin-top: 20px;
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--off-white); opacity: 0.6;
+    display: block; margin-bottom: 8px; margin-top: 20px;
   }
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    width: 100%;
-    background: var(--dark);
-    border: 1px solid var(--mid);
-    border-radius: 0;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    padding: 14px 18px;
-    outline: none;
-    transition: border-color 0.25s;
-    appearance: none;
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%; background: var(--dark); border: 1px solid var(--mid);
+    border-radius: 0; color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300;
+    padding: 14px 18px; outline: none; transition: border-color 0.25s; appearance: none;
   }
   .form-field select { cursor: none; }
-  .form-field input:focus,
-  .form-field select:focus,
-  .form-field textarea:focus { border-color: var(--accent); }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--accent); }
   .form-field textarea { resize: vertical; min-height: 120px; }
   .form-submit {
-    margin-top: 28px;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--accent);
-    border: none;
-    padding: 18px 44px;
-    cursor: none;
-    transition: box-shadow 0.3s, transform 0.2s;
-    align-self: flex-start;
+    margin-top: 28px; font-family: 'Space Mono', monospace; font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--black); background: var(--accent);
+    border: none; padding: 18px 44px; cursor: none;
+    transition: box-shadow 0.3s, transform 0.2s; align-self: flex-start;
   }
   .form-submit:hover { box-shadow: var(--accent-glow); transform: translateY(-2px); }
 
   /* FOOTER */
   footer {
-    background: var(--black);
-    border-top: 1px solid var(--mid);
+    background: var(--black); border-top: 1px solid var(--mid);
     padding: 60px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
   }
   footer img { height: 28px; opacity: 0.8; }
   .footer-links { display: flex; gap: 36px; }
   .footer-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    opacity: 0.5;
-    text-decoration: none;
-    transition: opacity 0.2s;
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--off-white); opacity: 0.5; text-decoration: none; transition: opacity 0.2s, color 0.2s;
   }
   .footer-links a:hover { opacity: 1; color: var(--accent); }
-  .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--off-white);
-    opacity: 0.3;
-  }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--off-white); opacity: 0.3; }
 
   /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* MOBILE */
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
@@ -666,40 +447,58 @@
     <p>We don't make content for the sake of it. Every frame, cut, and caption is engineered to move audiences — and metrics.</p>
   </div>
   <div class="services-grid">
+
     <div class="service-card reveal">
-      <div class="service-num">01</div>
-      <span class="service-icon">⚡</span>
-      <h3>High-Performance Ad Creation</h3>
-      <p>Platform-native creative that stops thumbs and starts conversions. We build for the algorithm — and the human behind the screen.</p>
-      <div class="service-tags">
-        <span class="tag">Meta</span>
-        <span class="tag">TikTok</span>
-        <span class="tag">YouTube</span>
-        <span class="tag">Performance Creative</span>
+      <div class="service-card-top">
+        <div class="service-num">01</div>
+        <span class="service-icon">⚡</span>
+        <h3>High-Performance Ad Creation</h3>
+        <p>Platform-native creative that stops thumbs and starts conversions. We build for the algorithm — and the human behind the screen.</p>
+        <div class="service-tags">
+          <span class="tag">Meta</span><span class="tag">TikTok</span>
+          <span class="tag">YouTube</span><span class="tag">Performance Creative</span>
+        </div>
+      </div>
+      <div class="service-video svc-video-inner">
+        <iframe src="https://www.youtube.com/embed/osYXy0rHV58?autoplay=1&mute=1&loop=1&playlist=osYXy0rHV58&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+          allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
+
     <div class="service-card reveal">
-      <div class="service-num">02</div>
-      <span class="service-icon">◈</span>
-      <h3>Visual Identity & Branding</h3>
-      <p>Cohesive aesthetics that make your brand unmistakable. We craft visual languages that scale — from feed posts to full campaigns.</p>
-      <div class="service-tags">
-        <span class="tag">Brand Identity</span>
-        <span class="tag">Motion Graphics</span>
-        <span class="tag">Style Guides</span>
+      <div class="service-card-top">
+        <div class="service-num">02</div>
+        <span class="service-icon">◈</span>
+        <h3>Visual Identity & Branding</h3>
+        <p>Cohesive aesthetics that make your brand unmistakable. We craft visual languages that scale — from feed posts to full campaigns.</p>
+        <div class="service-tags">
+          <span class="tag">Brand Identity</span><span class="tag">Motion Graphics</span>
+          <span class="tag">Style Guides</span>
+        </div>
+      </div>
+      <div class="service-video svc-video-inner">
+        <iframe src="https://www.youtube.com/embed/9VzQ1KSCzXo?autoplay=1&mute=1&loop=1&playlist=9VzQ1KSCzXo&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+          allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
+
     <div class="service-card reveal">
-      <div class="service-num">03</div>
-      <span class="service-icon">◎</span>
-      <h3>Content Strategy</h3>
-      <p>Data-backed visual storytelling that builds audiences and drives action. Strategy that connects creative decisions to real business outcomes.</p>
-      <div class="service-tags">
-        <span class="tag">Content Planning</span>
-        <span class="tag">Analytics</span>
-        <span class="tag">A/B Creative</span>
+      <div class="service-card-top">
+        <div class="service-num">03</div>
+        <span class="service-icon">◎</span>
+        <h3>Content Strategy</h3>
+        <p>Data-backed visual storytelling that builds audiences and drives action. Strategy that connects creative decisions to real business outcomes.</p>
+        <div class="service-tags">
+          <span class="tag">Content Planning</span><span class="tag">Analytics</span>
+          <span class="tag">A/B Creative</span>
+        </div>
+      </div>
+      <div class="service-video svc-video-inner">
+        <iframe src="https://www.youtube.com/embed/XEkn3J31pwE?autoplay=1&mute=1&loop=1&playlist=XEkn3J31pwE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=51"
+          allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -710,179 +509,138 @@
       <div class="section-label">Our Work</div>
       <h2>Selected<br>Projects.</h2>
     </div>
-    <a href="https://www.instagram.com/blackveinmedia/?hl=en-gb" target="_blank">View Instagram →</a>
+    <p class="work-sub">Click any tile to upload your own video or image</p>
   </div>
 
+  <style>
+    .work-sub { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--off-white); opacity:0.4; align-self:flex-end; }
+    .masonry-item input[type=file] { display:none; }
+    .masonry-item label { position:absolute; inset:0; cursor:none; z-index:3; display:block; }
+    .masonry-item video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none; }
+    .masonry-item img.uploaded { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none; }
+    .masonry-item.has-media .inner-label { opacity:0; }
+    .masonry-item.has-media video,
+    .masonry-item.has-media img.uploaded { display:block; }
+    .upload-ring {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:44px; height:44px; border:1.5px solid rgba(204,255,0,0.3);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      transition:border-color 0.3s, box-shadow 0.3s; z-index:2; pointer-events:none;
+    }
+    .masonry-item:hover .upload-ring { border-color:var(--accent); box-shadow:var(--accent-glow); }
+    .upload-ring svg { fill:rgba(204,255,0,0.4); width:16px; height:16px; }
+    .masonry-item.has-media .upload-ring { display:none; }
+  </style>
+
   <div class="masonry">
-    <!-- Each .masonry-item has a placeholder (replace with real <img> when you supply photos) -->
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">KTM</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">KTM</div>
-        <div class="overlay-metric">+40% CTR on paid social</div>
-        <div class="overlay-type">Performance Ad Creative</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi1">
+      <input type="file" id="mf1" accept="video/*,image/*" onchange="handleMedia(this,'mi1')">
+      <label for="mf1"></label>
+      <div class="placeholder inner-label"><div class="brand-name">KTM</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv1" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi1img" alt="">
+      <div class="overlay"><div class="overlay-client">KTM</div><div class="overlay-metric">+40% CTR on paid social</div><div class="overlay-type">Performance Ad Creative</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">GMBN</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">GMBN</div>
-        <div class="overlay-metric">2M+ views per campaign</div>
-        <div class="overlay-type">YouTube Content</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi2">
+      <input type="file" id="mf2" accept="video/*,image/*" onchange="handleMedia(this,'mi2')">
+      <label for="mf2"></label>
+      <div class="placeholder inner-label"><div class="brand-name">GMBN</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv2" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi2img" alt="">
+      <div class="overlay"><div class="overlay-client">GMBN</div><div class="overlay-metric">2M+ views per campaign</div><div class="overlay-type">YouTube Content</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">Litelok</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">Litelok</div>
-        <div class="overlay-metric">+62% conversion rate</div>
-        <div class="overlay-type">Brand Campaign</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi3">
+      <input type="file" id="mf3" accept="video/*,image/*" onchange="handleMedia(this,'mi3')">
+      <label for="mf3"></label>
+      <div class="placeholder inner-label"><div class="brand-name">Litelok</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv3" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi3img" alt="">
+      <div class="overlay"><div class="overlay-client">Litelok</div><div class="overlay-metric">+62% conversion rate</div><div class="overlay-type">Brand Campaign</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">Whyte Bikes</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">Whyte Bikes</div>
-        <div class="overlay-metric">3× ROAS on Meta</div>
-        <div class="overlay-type">Ad Creative</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi4">
+      <input type="file" id="mf4" accept="video/*,image/*" onchange="handleMedia(this,'mi4')">
+      <label for="mf4"></label>
+      <div class="placeholder inner-label"><div class="brand-name">Whyte Bikes</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv4" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi4img" alt="">
+      <div class="overlay"><div class="overlay-client">Whyte Bikes</div><div class="overlay-metric">3× ROAS on Meta</div><div class="overlay-type">Ad Creative</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">Enduro GP</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">Enduro GP</div>
-        <div class="overlay-metric">Event coverage — 500k reach</div>
-        <div class="overlay-type">Event & Social Content</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi5">
+      <input type="file" id="mf5" accept="video/*,image/*" onchange="handleMedia(this,'mi5')">
+      <label for="mf5"></label>
+      <div class="placeholder inner-label"><div class="brand-name">Enduro GP</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv5" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi5img" alt="">
+      <div class="overlay"><div class="overlay-client">Enduro GP</div><div class="overlay-metric">Event coverage — 500k reach</div><div class="overlay-type">Event & Social Content</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">Pinkbike</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">Pinkbike</div>
-        <div class="overlay-metric">+28% engagement rate</div>
-        <div class="overlay-type">Content Strategy</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi6">
+      <input type="file" id="mf6" accept="video/*,image/*" onchange="handleMedia(this,'mi6')">
+      <label for="mf6"></label>
+      <div class="placeholder inner-label"><div class="brand-name">Pinkbike</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv6" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi6img" alt="">
+      <div class="overlay"><div class="overlay-client">Pinkbike</div><div class="overlay-metric">+28% engagement rate</div><div class="overlay-type">Content Strategy</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">Blake Samson</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">Blake Samson</div>
-        <div class="overlay-metric">Personal brand launch</div>
-        <div class="overlay-type">Visual Identity</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi7">
+      <input type="file" id="mf7" accept="video/*,image/*" onchange="handleMedia(this,'mi7')">
+      <label for="mf7"></label>
+      <div class="placeholder inner-label"><div class="brand-name">Blake Samson</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv7" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi7img" alt="">
+      <div class="overlay"><div class="overlay-client">Blake Samson</div><div class="overlay-metric">Personal brand launch</div><div class="overlay-type">Visual Identity</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">EMBN</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">EMBN</div>
-        <div class="overlay-metric">+55% watch time</div>
-        <div class="overlay-type">YouTube Creative</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi8">
+      <input type="file" id="mf8" accept="video/*,image/*" onchange="handleMedia(this,'mi8')">
+      <label for="mf8"></label>
+      <div class="placeholder inner-label"><div class="brand-name">EMBN</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv8" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi8img" alt="">
+      <div class="overlay"><div class="overlay-client">EMBN</div><div class="overlay-metric">+55% watch time</div><div class="overlay-type">YouTube Creative</div></div>
     </div>
-    <div class="masonry-item reveal">
-      <div class="placeholder inner-label">
-        <div class="brand-name">GCN</div>
-        <div class="upload-hint">Add photo here</div>
-      </div>
-      <div class="overlay">
-        <div class="overlay-client">GCN</div>
-        <div class="overlay-metric">Viral series — 4M views</div>
-        <div class="overlay-type">Series Production</div>
-      </div>
+
+    <div class="masonry-item reveal" id="mi9">
+      <input type="file" id="mf9" accept="video/*,image/*" onchange="handleMedia(this,'mi9')">
+      <label for="mf9"></label>
+      <div class="placeholder inner-label"><div class="brand-name">GCN</div><div class="upload-hint">Click to upload</div></div>
+      <div class="upload-ring"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+      <video id="mv9" autoplay muted loop playsinline></video>
+      <img class="uploaded" id="mi9img" alt="">
+      <div class="overlay"><div class="overlay-client">GCN</div><div class="overlay-metric">Viral series — 4M views</div><div class="overlay-type">Series Production</div></div>
     </div>
+
   </div>
 </section>
 
 <!-- VIDEO REEL -->
 <div id="video-reel">
-  <div class="video-label">Our Reel</div>
+  <div class="video-section-label">Long Form Content</div>
   <div class="video-embed-wrap">
-    <iframe 
-      src="https://www.youtube.com/embed/fxFrW09n2KY?list=PLX_QOgUl82EmYrlMAqEnxA8nKqIHGnykg&rel=0&color=white&modestbranding=1" 
-      title="BV Media Production Reel"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/fxFrW09n2KY?list=PLX_QOgUl82EmYrlMAqEnxA8nKqIHGnykg&rel=0&color=white&modestbranding=1"
+      title="BV Media Production Reel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
 
-<!-- CLIENTS TICKER -->
+<!-- CLIENT LOGOS -->
 <div id="clients">
-  <div class="ticker-label">Trusted By</div>
-  <div class="ticker-track" id="tickerTrack">
-    <span class="ticker-item">KTM</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GMBN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">EMBN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GCN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GMBN Tech</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Whyte Bikes</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Litelok</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Pinkbike</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Enduro GP</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Blake Samson</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Rideable Now</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Letsavew</span>
-    <span class="ticker-dot">·</span>
-    <!-- Duplicate for seamless loop -->
-    <span class="ticker-item">KTM</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GMBN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">EMBN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GCN</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">GMBN Tech</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Whyte Bikes</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Litelok</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Pinkbike</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Enduro GP</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Blake Samson</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Rideable Now</span>
-    <span class="ticker-dot">·</span>
-    <span class="ticker-item">Letsavew</span>
-    <span class="ticker-dot">·</span>
+  <div class="clients-label">Trusted By</div>
+  <div class="ticker-outer">
+    <div class="ticker-track" id="tickerTrack"></div>
   </div>
 </div>
 
@@ -897,23 +655,14 @@
       <div class="contact-links">
         <a href="https://www.instagram.com/blackveinmedia/?hl=en-gb" class="contact-link" target="_blank">Instagram — @blackveinmedia</a>
         <a href="https://www.youtube.com/watch?v=fxFrW09n2KY&list=PLX_QOgUl82EmYrlMAqEnxA8nKqIHGnykg" class="contact-link" target="_blank">YouTube — View Our Reel</a>
-        <a href="mailto:hello@bvmedia.co.uk" class="contact-link">hello@bvmedia.co.uk</a>
+        <a href="mailto:blackveinmedia@gmail.com" class="contact-link">blackveinmedia@gmail.com</a>
       </div>
     </div>
     <div class="reveal">
       <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-field">
-          <label>Your Name</label>
-          <input type="text" placeholder="Full name" required>
-        </div>
-        <div class="form-field">
-          <label>Brand / Company</label>
-          <input type="text" placeholder="Who are we working with?">
-        </div>
-        <div class="form-field">
-          <label>Email</label>
-          <input type="email" placeholder="your@email.com" required>
-        </div>
+        <div class="form-field"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
+        <div class="form-field"><label>Brand / Company</label><input type="text" placeholder="Who are we working with?"></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
         <div class="form-field">
           <label>Project Type</label>
           <select>
@@ -924,10 +673,7 @@
             <option>Not sure yet — let's talk</option>
           </select>
         </div>
-        <div class="form-field">
-          <label>Tell Us More</label>
-          <textarea placeholder="What are you trying to achieve? Brief us in."></textarea>
-        </div>
+        <div class="form-field"><label>Tell Us More</label><textarea placeholder="What are you trying to achieve? Brief us in."></textarea></div>
         <button type="submit" class="form-submit">Send Brief</button>
       </form>
     </div>
@@ -947,72 +693,93 @@
 </footer>
 
 <script>
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+});
+(function animateRing() {
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+})();
+document.querySelectorAll('a, button, .masonry-item, .service-card, .service-video-placeholder').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+});
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.service-card').forEach((c, i) => { c.style.transitionDelay = (i * 0.1) + 's'; });
+document.querySelectorAll('.masonry-item').forEach((m, i) => { m.style.transitionDelay = (i * 0.06) + 's'; });
 
-  function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.querySelectorAll('a, button, .masonry-item, .service-card, .ticker-item').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
-  });
-
-  // SCROLL REVEAL
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // NAV on scroll
+// ── NAV ──
+window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      nav.style.background = 'rgba(8,8,8,0.97)';
-      nav.style.backdropFilter = 'blur(12px)';
-    } else {
-      nav.style.background = 'linear-gradient(to bottom, rgba(8,8,8,0.95) 0%, transparent 100%)';
-      nav.style.backdropFilter = 'blur(2px)';
-    }
-  });
+  if (window.scrollY > 60) { nav.style.background = 'rgba(8,8,8,0.97)'; nav.style.backdropFilter = 'blur(12px)'; }
+  else { nav.style.background = 'linear-gradient(to bottom,rgba(8,8,8,0.95) 0%,transparent 100%)'; nav.style.backdropFilter = 'blur(2px)'; }
+});
 
-  // FORM
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Brief Sent ✓';
-    btn.style.background = '#00e5ff';
-    btn.style.color = '#080808';
-    setTimeout(() => { btn.textContent = 'Send Brief'; }, 3000);
+// ── FORM ──
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Brief Sent ✓';
+  setTimeout(() => { btn.textContent = 'Send Brief'; }, 3000);
+}
+
+
+
+// ── PORTFOLIO MEDIA UPLOAD ──
+function handleMedia(input, itemId) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const url = URL.createObjectURL(file);
+  const item = document.getElementById(itemId);
+  const num = itemId.replace('mi','');
+  if (file.type.startsWith('video/')) {
+    const vid = document.getElementById('mv' + num);
+    vid.src = url;
+    vid.load();
+  } else {
+    const img = document.getElementById(itemId + 'img');
+    img.src = url;
   }
+  item.classList.add('has-media');
+}
 
-  // STAGGERED reveal for service cards and masonry
-  document.querySelectorAll('.service-card').forEach((card, i) => {
-    card.style.transitionDelay = (i * 0.1) + 's';
-  });
-  document.querySelectorAll('.masonry-item').forEach((item, i) => {
-    item.style.transitionDelay = (i * 0.06) + 's';
-  });
+
+// All logos rendered as inline SVG wordmarks; filter:brightness(0) invert(1) makes them white,
+// then opacity + hover gives the subtle-to-visible effect matching the dark palette.
+const brands = [
+  { name:'KTM', w:96, svg:`<text y="28" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="white" letter-spacing="-1">KTM</text>` },
+  { name:'GMBN', w:118, svg:`<text y="27" font-family="Arial Black,sans-serif" font-weight="900" font-size="27" fill="white" letter-spacing="1">GMBN</text>` },
+  { name:'EMBN', w:118, svg:`<text y="27" font-family="Arial Black,sans-serif" font-weight="900" font-size="27" fill="white" letter-spacing="1">EMBN</text>` },
+  { name:'GCN', w:88, svg:`<text y="27" font-family="Arial Black,sans-serif" font-weight="900" font-size="27" fill="white" letter-spacing="1">GCN</text>` },
+  { name:'GMBN Tech', w:185, svg:`<text y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="2">GMBN TECH</text>` },
+  { name:'Pinkbike', w:180, svg:`<rect x="0" y="4" width="8" height="26" rx="1.5" fill="white"/><text x="14" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="21" fill="white">PINKBIKE</text>` },
+  { name:'Whyte Bikes', w:160, svg:`<text y="22" font-family="Georgia,serif" font-weight="700" font-size="20" fill="white" letter-spacing="4">WHYTE</text><text y="34" font-family="Arial,sans-serif" font-weight="400" font-size="10" fill="white" letter-spacing="7">BIKES</text>` },
+  { name:'Litelok', w:150, svg:`<text y="26" font-family="Arial,sans-serif" font-weight="700" font-size="24" fill="white" letter-spacing="3">LITELOK</text>` },
+  { name:'Enduro GP', w:130, svg:`<text y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="18" fill="white" letter-spacing="2">ENDURO</text><text y="34" font-family="Arial,sans-serif" font-weight="400" font-size="11" fill="white" letter-spacing="9">GP</text>` },
+  { name:'Blake Samson', w:170, svg:`<text y="22" font-family="Georgia,serif" font-weight="700" font-size="18" fill="white" letter-spacing="4">BLAKE</text><text y="34" font-family="Georgia,serif" font-weight="400" font-size="13" fill="white" letter-spacing="3">SAMSON</text>` },
+  { name:'Rideable Now', w:175, svg:`<text y="22" font-family="Arial,sans-serif" font-weight="700" font-size="17" fill="white" letter-spacing="3">RIDEABLE</text><text y="34" font-family="Arial,sans-serif" font-weight="400" font-size="11" fill="white" letter-spacing="7">NOW</text>` },
+  { name:'Letsavew', w:165, svg:`<text y="26" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="white" letter-spacing="2">LETSAVEW</text>` }
+];
+
+const track = document.getElementById('tickerTrack');
+[...brands, ...brands].forEach(b => {
+  const wrap = document.createElement('div');
+  wrap.className = 'ticker-logo';
+  wrap.title = b.name;
+  wrap.innerHTML = `<svg width="${b.w}" height="38" viewBox="0 0 ${b.w} 38" xmlns="http://www.w3.org/2000/svg">${b.svg}</svg>`;
+  track.appendChild(wrap);
+});
 </script>
 </body>
 </html>
