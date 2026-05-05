@@ -349,14 +349,23 @@
   .form-field select { cursor: none; }
   .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--accent); }
   .form-field textarea { resize: vertical; min-height: 120px; }
+  .form-actions { display:flex; align-items:center; gap:20px; margin-top:28px; flex-wrap:wrap; }
   .form-submit {
-    margin-top: 28px; font-family: 'Space Mono', monospace; font-size: 12px;
+    font-family: 'Space Mono', monospace; font-size: 12px;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--black); background: var(--accent);
     border: none; padding: 18px 44px; cursor: none;
-    transition: box-shadow 0.3s, transform 0.2s; align-self: flex-start;
+    transition: box-shadow 0.3s, transform 0.2s;
   }
   .form-submit:hover { box-shadow: var(--accent-glow); transform: translateY(-2px); }
+  .btn-mailto {
+    font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--off-white); text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    padding-bottom:2px; transition:color 0.2s, border-color 0.2s;
+  }
+  .btn-mailto:hover { color:var(--accent); border-color:var(--accent); }
 
   /* FOOTER */
   footer {
@@ -741,13 +750,13 @@
       </div>
     </div>
     <div class="reveal">
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-field"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
-        <div class="form-field"><label>Brand / Company</label><input type="text" placeholder="Who are we working with?"></div>
-        <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+      <form class="contact-form" action="https://formspree.io/f/mlgzngyg" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-field"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="form-field"><label>Brand / Company</label><input type="text" name="company" placeholder="Who are we working with?"></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
         <div class="form-field">
           <label>Project Type</label>
-          <select>
+          <select name="project_type">
             <option>Ad Creative (Meta / TikTok / YouTube)</option>
             <option>Visual Identity & Branding</option>
             <option>Content Strategy</option>
@@ -755,8 +764,13 @@
             <option>Not sure yet — let's talk</option>
           </select>
         </div>
-        <div class="form-field"><label>Tell Us More</label><textarea placeholder="What are you trying to achieve? Brief us in."></textarea></div>
-        <button type="submit" class="form-submit">Send Brief</button>
+        <div class="form-field"><label>Tell Us More</label><textarea name="message" placeholder="What are you trying to achieve? Brief us in."></textarea></div>
+        <input type="hidden" name="_subject" value="New Project Brief — BV Media">
+        <input type="hidden" name="_next" value="">
+        <div class="form-actions">
+          <button type="submit" class="form-submit">Send Brief</button>
+          <a class="btn-mailto" id="mailtoBtn" href="mailto:blackveinmedia@gmail.com">Or Email Directly</a>
+        </div>
       </form>
     </div>
   </div>
@@ -810,10 +824,53 @@ window.addEventListener('scroll', () => {
 
 // ── FORM ──
 function handleSubmit(e) {
+  // Let Formspree handle the actual POST — we just update the UI
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+
+  // Build mailto link from current field values
+  const name    = form.querySelector('[name="name"]').value;
+  const company = form.querySelector('[name="company"]').value;
+  const email   = form.querySelector('[name="email"]').value;
+  const project = form.querySelector('[name="project_type"]').value;
+  const message = form.querySelector('[name="message"]').value;
+  const subject = encodeURIComponent('New Project Brief — BV Media');
+  const body    = encodeURIComponent(
+    `Name: ${name}\nCompany: ${company}\nEmail: ${email}\nProject: ${project}\n\n${message}`
+  );
+  document.getElementById('mailtoBtn').href =
+    `mailto:blackveinmedia@gmail.com?subject=${subject}&body=${body}`;
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  // Submit to Formspree via fetch so we can show success without redirect
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Brief Sent ✓';
-  setTimeout(() => { btn.textContent = 'Send Brief'; }, 3000);
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      btn.textContent = 'Brief Sent ✓';
+      btn.style.background = '#CCFF00';
+      form.reset();
+      setTimeout(() => { btn.textContent = 'Send Brief'; btn.disabled = false; }, 4000);
+    } else {
+      btn.textContent = 'Error — Try Again';
+      btn.style.background = '#ff4444';
+      btn.style.color = '#fff';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Send Brief';
+        btn.style.background = 'var(--accent)';
+        btn.style.color = 'var(--black)';
+      }, 4000);
+    }
+  }).catch(() => {
+    btn.textContent = 'Error — Try Again';
+    btn.disabled = false;
+  });
 }
 
 
