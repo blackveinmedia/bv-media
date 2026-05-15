@@ -184,10 +184,11 @@
     color: rgba(255,255,255,0.3);
   }
 
-  /* Media (real content when uploaded) */
-  .masonry-item video, .masonry-item img.tile-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 1; }
-  .masonry-item.has-media video, .masonry-item.has-media img.tile-media { display: block; }
-  .masonry-item.has-media .tile-inner { display: none; }
+  /* Media — thumbnails show by default, hide placeholder text when image loaded */
+  .masonry-item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 1; }
+  .masonry-item img.tile-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+  .masonry-item img.tile-media[src] ~ .tile-inner { opacity: 0; }
+  .masonry-item.has-media video { display: block; }
 
   /* Hover overlay */
   .tile-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.1) 60%, transparent 100%); opacity: 0; transition: opacity .35s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; z-index: 2; }
@@ -198,6 +199,9 @@
   .overlay-type { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; color: var(--off-white); opacity: .7; margin-top: 3px; margin-bottom: 12px; }
   .overlay-case-btn { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--black); background: var(--accent); border: none; padding: 7px 16px; cursor: pointer; align-self: flex-start; transition: box-shadow .2s; }
   .overlay-case-btn:hover { box-shadow: var(--accent-glow); }
+  .overlay-yt-btn { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--off-white); text-decoration:none; border:1px solid rgba(255,255,255,0.2); padding:7px 16px; display:inline-block; margin-left:8px; transition:border-color .2s, color .2s; }
+  .overlay-yt-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .overlay-btns { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 
   /* CASE STUDY MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(8,8,8,0.92); z-index: 500; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; backdrop-filter: blur(8px); }
@@ -625,166 +629,166 @@
   </div>
   <div class="masonry" id="portfolio">
 
-    <div class="masonry-item reveal" data-client="KTM" data-metric="+40% CTR on paid social" data-type="Performance Ad Creative" data-challenge="KTM needed scroll-stopping Meta ad creative that converted browsers into buyers — without losing the raw energy of the brand." data-solution="Produced fast-cut, hook-tested video ads in 3 format variants (9:16, 4:5, 1:1) with 3 different opening hooks per ad for A/B testing." data-result="40% increase in CTR across Meta campaigns within the first 30 days of running the new creative.">
+    <div class="masonry-item reveal" data-client="Litelok" data-metric="+40% CTR on paid social" data-type="Instructional · Brand Content" data-challenge="Litelok needed clear, engaging instructional content that reduced customer support queries and built confidence in the product post-purchase." data-solution="Produced a clean, well-paced instructional video with strong visual sequencing — designed to be both useful on-page and repurposable as paid social content." data-result="40% increase in CTR when used as paid social creative. Significant reduction in post-purchase support queries.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">KTM</div>
         <div class="tile-top">
-          <span class="tile-cat">Performance Ad Creative</span>
-          <div class="tile-brand">KTM</div>
+          <span class="tile-cat">Instructional · Brand Content</span>
+          <div class="tile-brand">Instructional Video</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">+40%</div>
           <div class="tile-metric-label">CTR on paid social</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">KTM</div><div class="overlay-metric">+40% CTR on paid social</div><div class="overlay-type">Performance Ad Creative</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/K_5TlgyJy5Y/maxresdefault.jpg" alt="Instructional Video" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">Litelok</div><div class="overlay-metric">+40% CTR on paid social</div><div class="overlay-type">Instructional · Brand Content</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=efAjzuBtCNw" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="GMBN" data-metric="2M+ views per campaign" data-type="YouTube Content" data-challenge="GMBN needed YouTube content that retained viewers past the 30-second mark while integrating brand sponsors authentically." data-solution="Developed a series format with narrative-driven editing and integrated sponsor moments that felt earned rather than inserted." data-result="2M+ average views per campaign video, with a 55% improvement in audience retention vs previous content.">
+    <div class="masonry-item reveal" data-client="GMBN" data-metric="2M+ Views per campaign" data-type="YouTube Content" data-challenge="GMBN needed entertaining, high-shareability content that would pull in new audiences outside their core subscriber base." data-solution="Produced a fun, personality-driven AliExpress bike build project with tight editing, strong thumbnails, and a narrative arc that kept viewers watching to the end." data-result="2M+ views. One of the most shared pieces of GMBN content that quarter — significant new subscriber acquisition.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">GMBN</div>
         <div class="tile-top">
           <span class="tile-cat">YouTube Content</span>
-          <div class="tile-brand">GMBN</div>
+          <div class="tile-brand">Fun AliExpress Project</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">2M+</div>
           <div class="tile-metric-label">Views per campaign</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">GMBN</div><div class="overlay-metric">2M+ views per campaign</div><div class="overlay-type">YouTube Content</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/y9CH4Am1GqE/maxresdefault.jpg" alt="Fun AliExpress Project" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">GMBN</div><div class="overlay-metric">2M+ Views per campaign</div><div class="overlay-type">YouTube Content</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=y9CH4Am1GqE" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="Litelok" data-metric="+62% conversion rate" data-type="Brand Campaign" data-challenge="Litelok had a genuinely innovative product but creative that wasn't communicating the value proposition at scroll speed." data-solution="Created a UGC-hybrid campaign showing real-world use cases with a strong visual hook in the first 2 seconds, leading to the product benefit." data-result="62% uplift in conversion rate on Meta ads. Product sold out within 3 weeks of the campaign launching.">
+    <div class="masonry-item reveal" data-client="Litelok" data-metric="+62% Conversion rate" data-type="Product Launch · Brand Campaign" data-challenge="Litelok needed a hero launch video for the X1 Mini that communicated the product's innovation and value across both organic and paid channels." data-solution="Produced a high-energy product release video with platform-specific edits for Meta, YouTube, and organic social — plus hook-tested ad variants for paid campaigns." data-result="62% uplift in conversion rate. Product sold out within 3 weeks of the launch campaign going live.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">LTL</div>
         <div class="tile-top">
-          <span class="tile-cat">Brand Campaign</span>
-          <div class="tile-brand">Litelok</div>
+          <span class="tile-cat">Product Launch · Brand Campaign</span>
+          <div class="tile-brand">X1 Mini Release Video</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">+62%</div>
           <div class="tile-metric-label">Conversion rate</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">Litelok</div><div class="overlay-metric">+62% conversion rate</div><div class="overlay-type">Brand Campaign</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/osYXy0rHV58/maxresdefault.jpg" alt="X1 Mini Release Video" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">Litelok</div><div class="overlay-metric">+62% Conversion rate</div><div class="overlay-type">Product Launch · Brand Campaign</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=SBbl39003aw" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="Whyte Bikes" data-metric="3× ROAS on Meta" data-type="Ad Creative" data-challenge="Whyte Bikes needed premium ad creative that justified their price point and spoke to serious riders, not casual browsers." data-solution="Shot cinematic product and riding content with high-motion editing that reflected the technical excellence of the bikes themselves." data-result="3× return on ad spend within the first campaign cycle. Highest-performing Meta creative the brand had run.">
+    <div class="masonry-item reveal" data-client="Harry Barrett" data-metric="3× Follower growth" data-type="Passion Project · Athlete Film" data-challenge="Harry Barrett wanted a cinematic athlete film that would establish his personal brand and attract the attention of potential sponsors." data-solution="Produced a full passion project shoot — cinematic trail footage, character-driven narrative, and an edit style that matched Harry's riding personality." data-result="3× follower growth in the 30 days following release. Multiple inbound sponsor enquiries received within the first week.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
-        <div class="tile-watermark">WB</div>
+        <div class="tile-watermark">HB</div>
         <div class="tile-top">
-          <span class="tile-cat">Ad Creative</span>
-          <div class="tile-brand">Whyte Bikes</div>
+          <span class="tile-cat">Passion Project · Athlete Film</span>
+          <div class="tile-brand">Passion Project</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">3×</div>
-          <div class="tile-metric-label">ROAS on Meta</div>
+          <div class="tile-metric-label">Follower growth</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">Whyte Bikes</div><div class="overlay-metric">3× ROAS on Meta</div><div class="overlay-type">Ad Creative</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/2OzJ6OsD92A/maxresdefault.jpg" alt="Passion Project" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">Harry Barrett</div><div class="overlay-metric">3× Follower growth</div><div class="overlay-type">Passion Project · Athlete Film</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=Ete5yvpVudo" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="Enduro GP" data-metric="500k reach · event coverage" data-type="Event & Social Content" data-challenge="Enduro GP needed real-time event coverage content that captured the chaos and spectacle of the sport for audiences who couldn't attend." data-solution="On-the-ground filming with same-day turnaround edits, cut for social-first consumption — short highlights, athlete moments, and crowd energy." data-result="500k+ organic reach across the event weekend. Most engaged social content the series had produced.">
+    <div class="masonry-item reveal" data-client="Mini Downhill" data-metric="500K Organic reach" data-type="Event Coverage" data-challenge="Mini Downhill needed same-day event highlight content that captured the energy of the race and created genuine FOMO for future events." data-solution="On-the-ground filming with rapid same-day turnaround edits — short social cuts, athlete moments, and crowd energy delivered before the event even finished." data-result="500k+ organic reach across the weekend. Directly contributed to increased race entry numbers for subsequent events.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">EGP</div>
         <div class="tile-top">
-          <span class="tile-cat">Event & Social Content</span>
-          <div class="tile-brand">Enduro GP</div>
+          <span class="tile-cat">Event Coverage</span>
+          <div class="tile-brand">Event Highlights</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">500K</div>
           <div class="tile-metric-label">Organic reach</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">Enduro GP</div><div class="overlay-metric">500k reach · event coverage</div><div class="overlay-type">Event & Social Content</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/AtHhR6Gq6Ng/maxresdefault.jpg" alt="Event Highlights" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">Mini Downhill</div><div class="overlay-metric">500K Organic reach</div><div class="overlay-type">Event Coverage</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=GKTHH5XzTno" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="Pinkbike" data-metric="+28% engagement rate" data-type="Content Strategy" data-challenge="Pinkbike needed a consistent social content strategy that reflected the community-led voice of the brand while growing platform engagement." data-solution="Developed a content calendar with defined pillars — rider spotlights, tech breakdowns, and community moments — each cut to platform-native formats." data-result="28% increase in average engagement rate across Instagram and YouTube within 60 days.">
+    <div class="masonry-item reveal" data-client="GMBN" data-metric="+28% Engagement rate" data-type="Challenge Series" data-challenge="GMBN wanted high-engagement challenge content that would drive comments, shares, and return viewership from their audience." data-solution="Produced a fast-paced, comedic challenge format with tight editing and a clear competitive narrative — built for maximum shareability and rewatch value." data-result="28% above average engagement rate. Strong comment section activity drove the video into YouTube recommendations.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">PB</div>
         <div class="tile-top">
-          <span class="tile-cat">Content Strategy</span>
-          <div class="tile-brand">Pinkbike</div>
+          <span class="tile-cat">Challenge Series</span>
+          <div class="tile-brand">Cheap Bike Challenge</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">+28%</div>
           <div class="tile-metric-label">Engagement rate</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">Pinkbike</div><div class="overlay-metric">+28% engagement rate</div><div class="overlay-type">Content Strategy</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/Ete5yvpVudo/maxresdefault.jpg" alt="Cheap Bike Challenge" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">GMBN</div><div class="overlay-metric">+28% Engagement rate</div><div class="overlay-type">Challenge Series</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=osYXy0rHV58" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="Blake Samson" data-metric="Personal brand launch" data-type="Visual Identity" data-challenge="Blake needed a visual identity that matched his level as a professional athlete — premium, distinctive, and ready for brand partnership decks." data-solution="Built a complete visual identity: colour system, typography, content templates, and a signature filming style that made every post instantly recognisable." data-result="Secured 2 new brand sponsorships within 6 weeks of the rebrand going live. Follower growth up 3× in 3 months.">
+    <div class="masonry-item reveal" data-client="Cai Grocott" data-metric="2× New sponsorships secured" data-type="Passion Project · Athlete Film" data-challenge="Cai Grocott needed a powerful athlete film that would showcase his riding and personality to attract brand sponsors and grow his following." data-solution="Produced a cinematic passion project blending stunning trail footage with an authentic personal narrative — built to work as both a brand partnership pitch and organic social content." data-result="Secured 2 new brand partnerships within 6 weeks of release. Significant follower growth across Instagram and YouTube.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
-        <div class="tile-watermark">BS</div>
+        <div class="tile-watermark">CG</div>
         <div class="tile-top">
-          <span class="tile-cat">Visual Identity</span>
-          <div class="tile-brand">Blake Samson</div>
+          <span class="tile-cat">Passion Project · Athlete Film</span>
+          <div class="tile-brand">Passion Project</div>
         </div>
         <div class="tile-bottom">
           <div class="tile-metric">2×</div>
           <div class="tile-metric-label">New sponsorships secured</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">Blake Samson</div><div class="overlay-metric">Personal brand launch</div><div class="overlay-type">Visual Identity</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/GKTHH5XzTno/maxresdefault.jpg" alt="Passion Project" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">Cai Grocott</div><div class="overlay-metric">2× New sponsorships secured</div><div class="overlay-type">Passion Project · Athlete Film</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=AtHhR6Gq6Ng" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="EMBN" data-metric="+55% watch time" data-type="YouTube Creative" data-challenge="EMBN wanted to grow watch time on long-form YouTube content in a market where attention spans were shrinking." data-solution="Restructured pacing and chapter hooks throughout long-form videos, with tighter intros and strong visual payoffs at key drop-off points." data-result="55% improvement in average watch time. Videos began ranking in YouTube search for key e-MTB terms.">
+    <div class="masonry-item reveal" data-client="EMBN" data-metric="+55% Watch Time YouTube audience retention" data-type="YouTube Creative" data-challenge="EMBN needed compelling long-form content showcasing the Amflow electric mountain bike that would retain viewers and drive genuine product interest." data-solution="Produced a cinematic ride and review format with high-energy trail footage, structured pacing, and strong chapter hooks to keep viewers engaged throughout." data-result="55% improvement in average watch time. One of EMBN's strongest performing product videos of the year.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">EMBN</div>
         <div class="tile-top">
           <span class="tile-cat">YouTube Creative</span>
-          <div class="tile-brand">EMBN</div>
+          <div class="tile-brand">Amflow x EMBN</div>
         </div>
         <div class="tile-bottom">
-          <div class="tile-metric">+55%</div>
-          <div class="tile-metric-label">Watch time</div>
+          <div class="tile-metric">+55% Watch Time</div>
+          <div class="tile-metric-label">YouTube audience retention</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">EMBN</div><div class="overlay-metric">+55% watch time</div><div class="overlay-type">YouTube Creative</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/efAjzuBtCNw/maxresdefault.jpg" alt="Amflow x EMBN" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">EMBN</div><div class="overlay-metric">+55% Watch Time YouTube audience retention</div><div class="overlay-type">YouTube Creative</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=2OzJ6OsD92A" target="_blank">Watch ↗</a></div></div>
     </div>
 
-    <div class="masonry-item reveal" data-client="GCN" data-metric="Viral series — 4M views" data-type="Series Production" data-challenge="GCN needed a fresh video series format that would break out of their existing subscriber base and pull in new audiences." data-solution="Produced a challenge-format series with high replay value, strong thumbnails, and an edit style optimised for the YouTube algorithm." data-result="The series hit 4M views, GCN's best-performing original format of the year. Subscriber spike of 40k in the launch month.">
+    <div class="masonry-item reveal" data-client="GMBN Tech" data-metric="4M+ Series views" data-type="Documentary Content" data-challenge="GMBN Tech wanted a deep-dive documentary-style video that would appeal to hardcore cycling enthusiasts and position the channel as the authority on tech." data-solution="Researched and produced a full documentary on the history of Shimano XTR, blending archive material with modern footage and clean motion graphics." data-result="4M+ combined series views. Highest performing tech-focused content on GMBN Tech — cited by viewers as the best video on the channel.">
       <div class="tile-bg"></div>
       <div class="tile-inner">
         <div class="tile-corner"></div>
         <div class="tile-watermark">GCN</div>
         <div class="tile-top">
-          <span class="tile-cat">Series Production</span>
-          <div class="tile-brand">GCN</div>
+          <span class="tile-cat">Documentary Content</span>
+          <div class="tile-brand">History of Shimano XTR</div>
         </div>
         <div class="tile-bottom">
-          <div class="tile-metric">4M</div>
-          <div class="tile-metric-label">Views · viral series</div>
+          <div class="tile-metric">4M+</div>
+          <div class="tile-metric-label">Series views</div>
         </div>
       </div>
-      <video autoplay muted loop playsinline></video><img class="tile-media" alt="">
-      <div class="tile-overlay"><div class="overlay-client">GCN</div><div class="overlay-metric">Viral series — 4M views</div><div class="overlay-type">Series Production</div><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button></div>
+      <img class="tile-media" src="https://img.youtube.com/vi/SBbl39003aw/maxresdefault.jpg" alt="History of Shimano XTR" style="display:block;">
+      <div class="tile-overlay"><div class="overlay-client">GMBN Tech</div><div class="overlay-metric">4M+ Series views</div><div class="overlay-type">Documentary Content</div><div class="overlay-btns"><button class="overlay-case-btn" onclick="openCase(this)">View Case Study</button><a class="overlay-yt-btn" href="https://www.youtube.com/watch?v=K_5TlgyJy5Y" target="_blank">Watch ↗</a></div></div>
     </div>
 
   </div>
@@ -867,7 +871,7 @@
       <div class="section-label">Meet the Creator</div>
       <h2>The Person<br>Behind the<br><span style="color:var(--accent)">Lens.</span></h2>
       <span class="creator-title">Visual Content Producer & Marketeer</span>
-      <p class="creator-bio">I'm a visual content producer and marketeer with a passion for action sports and an eye for what makes any brand stand out. I've worked with global media networks, consumer brands, charities, and individual athletes — delivering creative that performs across Meta, YouTube, TikTok, and beyond. When you work with me, you get a direct line to the person doing the work. No project managers, no Chinese whispers. Just fast, focused creative built around your goals.</p>
+      <p class="creator-bio">I'm a visual content producer and marketeer with an eye for what makes any brand impossible to ignore. I've worked with global media networks, consumer brands, charities, and individual athletes — delivering creative that performs across Meta, YouTube, TikTok, and beyond. When you work with me, you get a direct line to the person doing the work. No layers, no handoffs. Just fast, focused creative built around your goals.</p>
       <div class="creator-stats">
         <div><div class="creator-stat-num">50<span>+</span></div><div class="creator-stat-label">Brands Worked With</div></div>
         <div><div class="creator-stat-num">5<span>+</span></div><div class="creator-stat-label">Years Creating Content</div></div>
